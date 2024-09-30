@@ -16,7 +16,7 @@
     <div id="playerContainer">
         <div id="player"></div>
     </div>
-    <audio id="background-music" src="M1l31.github.io-Trust_External-main/Musica/chill.mp3" preload="auto" autoplay loop></audio>
+    
 <body>
 
 <body oncontextmenu="return false;" onload="loadd()" class="bg">
@@ -62,10 +62,31 @@
                 
             </div>
             
-            <div class="2 xl:text-right xl:ml-auto sm:mt-10 sm:px-10 xl:px-0">
-                <!-- Video (Trust😊 ) -->
-                <iframe width="640" height="360" src="https://www.youtube.com/embed/nPL81iv_1Ao" frameborder="3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>            
+            <audio id="background-music" src="M1l31.github.io-Trust_External-main/Musica/chill.mp3" preload="auto" autoplay loop></audio>
+
+<iframe id="youtube-video" width="640" height="360" src="https://www.youtube.com/embed/nPL81iv_1Ao?enablejsapi=1" frameborder="3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-video', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        var backgroundMusic = document.getElementById('background-music');
+        if (event.data == YT.PlayerState.PLAYING) {
+            backgroundMusic.pause();
+        } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+            backgroundMusic.play();
+        }
+    }
+</script>
+            
         </div>
         <div class="bg sm:px-10">
             <div class="content grid xl:grid-cols-3 xl:mt-80 gap-5 pt-5">
